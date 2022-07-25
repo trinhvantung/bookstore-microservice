@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+body {
+	font-family: Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+.container {
+	max-width: 680px;
+	margin: 0 auto;
+}
+
+.logotype {
+	background: #000;
+	color: #fff;
+	width: 75px;
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+	font-size: 11px;
+}
+
+.column-title {
+	background: #eee;
+	text-transform: uppercase;
+	padding: 15px 5px 15px 15px;
+	font-size: 11px
+}
+
+.column-detail {
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	border-right: 1px solid #eee;
+	padding-left: 12px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.column-header {
+	background: #eee;
+	text-transform: uppercase;
+	padding: 15px;
+	font-size: 11px;
+	border-right: 1px solid #eee;
+}
+
+.row {
+	padding: 7px 14px;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+}
+
+.alert {
+	background: #ffd9e8;
+	padding: 20px;
+	margin: 20px 0;
+	line-height: 22px;
+	color: #333
+}
+
+.socialmedia {
+	background: #eee;
+	padding: 20px;
+	display: inline-block
+}
+</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<table width="100%">
+			<tr>
+				<td width="75px">
+					<div class="logotype">BookStore</div>
+				</td>
+				<td width="calc(100% - 75px)"
+					style="background: #fee977; border-left: 15px solid #fff; padding-left: 30px; font-size: 26px; font-weight: bold; letter-spacing: -1px;">
+					Order confirmation</td>
+				<td></td>
+			</tr>
+		</table>
+		<h3>Thông tin đơn hàng</h3>
+		<table width="100%" style="border-collapse: collapse;">
+			<tr>
+				<td width="180px" class="column-title">Ngày đặt</td>
+				<td class="column-detail" th:text="${order.createdDate}"></td>
+			</tr>
+			<tr>
+				<td class="column-title">Họ tên</td>
+				<td class="column-detail" th:text="${order.fullname}"></td>
+			</tr>
+			<tr>
+				<td class="column-title">Địa chỉ</td>
+				<td class="column-detail" th:text="${order.address}"></td>
+			</tr>
+			<tr>
+				<td class="column-title">Số điện thoại</td>
+				<td class="column-detail" th:text="${order.phone}"></td>
+			</tr>
+
+		</table>
+
+		<h3>Chi tiết sản phẩm</h3>
+		<table width="100%"
+			style="border-collapse: collapse; border-bottom: 1px solid #eee;">
+			<tr>
+				<td width="40%" class="column-header">Tên sách</td>
+				<td width="20%" class="column-header">Giá</td>
+				<td width="20%" class="column-header">Số lượng</td>
+				<td width="20%" class="column-header">Tổng tiền</td>
+			</tr>
+			<th:block th:each="item:${order.orderItems}">
+				<tr>
+					<td class="row" th:text="${item.book.name}"></td>
+					<td class="row" th:text="${item.price + ' đ'}"></td>
+					<td class="row" th:text="${item.quantity}"></td>
+					<td class="row" th:text="${item.price * item.quantity + ' đ'}"></td>
+				</tr>
+			</th:block>
+		</table>
+		<div
+			style="text-align: right; font-size: 20px; color: #fb3c2d; font-family: monospace;"
+			class="row">
+			<span>Tổng tiền: </span><b th:text="${order.totalPrice + ' đ'}"></b>
+		</div>
+	</div>
+</body>
+
+</html>

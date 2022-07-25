@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: auth-service
+        uri: lb://auth-service
+        predicates:
+        - Path=/auth-service/**
+      - id: user-service
+        uri: lb://user-service
+        predicates:
+        - Path=/user-service/**
+      - id: catalog-service
+        uri: lb://catalog-service
+        predicates:
+        - Path=/catalog-service/**
+      - id: review-service
+        uri: lb://review-service
+        predicates:
+        - Path=/review-service/**
+      - id: order-service
+        uri: lb://order-service
+        predicates:
+        - Path=/order-service/**

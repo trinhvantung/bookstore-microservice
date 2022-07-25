@@ -1,0 +1,7 @@
+security:
+  oauth2:
+    client:
+      clientId: server
+      clientSecret: secret
+      grantType: client_credentials
+      scope: server

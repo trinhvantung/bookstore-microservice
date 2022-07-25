@@ -1,0 +1,25 @@
+server:
+  port: 6000
+  servlet:
+    context-path: /order-service
+spring:
+  datasource:
+    password: trinhvantung
+    url: jdbc:postgresql://localhost:5432/bookstore_order
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        format_sql: true
+    show-sql: true
+security:
+  oauth2:
+    client:
+      clientId: server
+      clientSecret: secret
+      grantType: client_credentials
+      scope: server
+      accessTokenUri: http://localhost:8080/auth-service/oauth/token
